@@ -1,25 +1,21 @@
-#🧩 Bajaj Finserv Health — Webhook Solver (Qualifier 1, Java)
+# 🧩 Bajaj Finserv Health — Webhook Solver (Qualifier 1, Java)
 
-📘 Overview
+## 📘 Overview
 
 This Spring Boot project implements the Bajaj Finserv Health Java Qualifier 1 problem.
 It automates the entire flow — from webhook generation to final SQL query submission — without any manual trigger.
 
-⚙️ Features
+## ⚙️ Features
 
 Executes automatically on application startup
-
 Sends a POST request to generate a webhook
-
 Receives accessToken (JWT) and webhook URL
-
 Submits the final SQL query (Question 1) using the token
-
 No controller or REST endpoint needed for triggering
-
 Uses Spring Boot + RestTemplate
 
-🧮 SQL Query (Question 1)
+## 🧮 SQL Query (Question 1)
+
 SELECT p.AMOUNT AS SALARY,
        CONCAT(e.FIRST_NAME, ' ', e.LAST_NAME) AS NAME,
        TIMESTAMPDIFF(YEAR, e.DOB, CURDATE()) AS AGE,
@@ -34,22 +30,15 @@ WHERE DAY(p.PAYMENT_TIME) <> 1
     WHERE DAY(PAYMENT_TIME) <> 1
   );
 
-🧱 Tech Stack
-
+## 🧱 Tech Stack
 Java 17+
-
 Spring Boot 3.1.6
-
 Maven
-
 RestTemplate (HTTP client)
 
-🚀 How It Works
-
+## 🚀 How It Works
 On startup, the app sends:
-
 POST https://bfhldevapigw.healthrx.co.in/hiring/generateWebhook/JAVA
-
 
 Body:
 
@@ -59,40 +48,27 @@ Body:
   "email": "john@example.com"
 }
 
-
 Receives:
-
 webhook (submission URL)
-
 accessToken (JWT)
-
 Submits SQL using:
-
 POST https://bfhldevapigw.healthrx.co.in/hiring/testWebhook/JAVA
 
-
 Headers:
-
 Authorization: <accessToken>
 Content-Type: application/json
 
-
 Body:
-
 {
   "finalQuery": "YOUR_SQL_QUERY_HERE"
 }
-
 
 Logs success or error to the console and exits.
 
 🖥️ Running the Application
 Prerequisites
-
 Java 17+
-
 Maven 3.8 or higher
-
 Steps
 # Go to the project folder
 cd bfhl-webhook-solver
@@ -106,7 +82,7 @@ java -jar target/bfhl-webhook-solver-1.0.0.jar
 
 The program will automatically perform all actions and exit once complete.
 
-🧰 Project Structure
+## 🧰 Project Structure
 bfhl-webhook-solver/
 │
 ├── pom.xml
@@ -118,7 +94,7 @@ bfhl-webhook-solver/
 └── target/
     └── bfhl-webhook-solver-1.0.0.jar
 
-⚙️ Configuration
+## ⚙️ Configuration
 
 Default port: 8080
 To use a different port, edit:
