@@ -16,19 +16,19 @@ Uses Spring Boot + RestTemplate
 
 ## 🧮 SQL Query (Question 1)
 
-SELECT p.AMOUNT AS SALARY,
-       CONCAT(e.FIRST_NAME, ' ', e.LAST_NAME) AS NAME,
-       TIMESTAMPDIFF(YEAR, e.DOB, CURDATE()) AS AGE,
-       d.DEPARTMENT_NAME
-FROM PAYMENTS p
-JOIN EMPLOYEE e ON p.EMP_ID = e.EMP_ID
-JOIN DEPARTMENT d ON e.DEPARTMENT = d.DEPARTMENT_ID
-WHERE DAY(p.PAYMENT_TIME) <> 1
-  AND p.AMOUNT = (
-    SELECT MAX(AMOUNT)
-    FROM PAYMENTS
-    WHERE DAY(PAYMENT_TIME) <> 1
-  );
+       SELECT p.AMOUNT AS SALARY,
+              CONCAT(e.FIRST_NAME, ' ', e.LAST_NAME) AS NAME,
+              TIMESTAMPDIFF(YEAR, e.DOB, CURDATE()) AS AGE,
+              d.DEPARTMENT_NAME
+       FROM PAYMENTS p
+       JOIN EMPLOYEE e ON p.EMP_ID = e.EMP_ID
+       JOIN DEPARTMENT d ON e.DEPARTMENT = d.DEPARTMENT_ID
+       WHERE DAY(p.PAYMENT_TIME) <> 1
+         AND p.AMOUNT = (
+           SELECT MAX(AMOUNT)
+           FROM PAYMENTS
+           WHERE DAY(PAYMENT_TIME) <> 1
+         );
 
 ## 🧱 Tech Stack
 Java 17+
@@ -70,29 +70,29 @@ Prerequisites
 Java 17+
 Maven 3.8 or higher
 Steps
-# Go to the project folder
+## Go to the project folder
 cd bfhl-webhook-solver
 
-# Build the project
+## Build the project
 mvn clean package
 
-# Run the JAR file
+## Run the JAR file
 java -jar target/bfhl-webhook-solver-1.0.0.jar
 
 
 The program will automatically perform all actions and exit once complete.
 
 ## 🧰 Project Structure
-bfhl-webhook-solver/
-│
-├── pom.xml
-├── src/
-│   ├── main/
-│   │   ├── java/com/example/bfhlwebhook/
-│   │   │   └── Application.java
-│   │   └── resources/application.properties
-└── target/
-    └── bfhl-webhook-solver-1.0.0.jar
+       bfhl-webhook-solver/
+       │
+       ├── pom.xml
+       ├── src/
+              │   ├── main/
+       │   │   ├── java/com/example/bfhlwebhook/
+       │   │   │   └── Application.java
+       │   │   └── resources/application.properties
+       └── target/
+           └── bfhl-webhook-solver-1.0.0.jar
 
 ## ⚙️ Configuration
 
